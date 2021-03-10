@@ -1,0 +1,19 @@
+{{ define "content" }}
+<p class="lead">
+   <a href="/thread/new">创建一个话题</a>或者加入下方的话题 
+</p>
+
+{{ range . }}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="lead"><i class="fa fa-comment-o">{{ .Topic }}</i></span>
+        </div>
+        <div class="panel-body">
+            由{{ .User.Name }}创建 - {{ .CreatedAtDate }} - {{ .NumReplies }} 回复.
+            <div class="pull-right">
+                <a href="/thread/read?id={{.Uuid}}">查看详情</a>
+            </div>
+        </div>
+    </div>
+{{ end }}
+{{ end}}
