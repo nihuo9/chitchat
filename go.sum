@@ -1,2 +1,6 @@
+github.com/google/uuid v1.2.0 h1:qJYtXnJRWmpe7m/3XlyhrsLrEURqHRM2kxzoxXqyUDs=
+github.com/google/uuid v1.2.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/lib/pq v1.10.0 h1:Zx5DJFEYQXio93kgXnQ09fXNiUKsqv4OUEu2UtGcB1E=
+github.com/lib/pq v1.10.0/go.mod h1:AlVN5x4E4T544tWzH6hKfbfQvm3HdbOxrmggDNAPY9o=
 github.com/nihuo9/chitchat v0.0.0-20210310073151-470bef13f1ba h1:tuSiNxPU2y9ypoE7DaCJ6ZXC9S0vXjmNOPuSRHQSui4=
 github.com/nihuo9/chitchat v0.0.0-20210310073151-470bef13f1ba/go.mod h1:p6wLfBFgTIP99Il3YOU3st67YAj+ldIteOzJlgN5Kxg=

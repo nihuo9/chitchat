@@ -1,0 +1,100 @@
+package main
+
+import (
+	"net/http"
+
+	"github.com/nihuo9/chitchat/data"
+)
+
+// POST /login
+func authenticate(writer http.ResponseWriter, request *http.Request) {
+	printl("authenticate")
+	err := request.ParseForm()
+	if err != nil {
+		sendError(writer, request, "PareForm error")
+		printl("parse error")
+		http.Redirect(writer, request, "/login", http.StatusSeeOther)
+		return
+	}
+
+	user, err := data.UserByEmail(request.PostFormValue("email"))
+	if err != nil {
+		warning(err, "Cannot find user")
+		printl("cannot find user")
+		http.Redirect(writer, request, "/login", http.StatusSeeOther)
+		return
+	}
+	if user.Password == request.PostFormValue("password") {
+		session, err := user.CreateSession()
+		if err != nil {
+			danger(err, "Cannot create session")
+			http.Redirect(writer, request, "/login", http.StatusSeeOther)
+			printl("cannot create session, ", err)
+			return
+		}
+		cookie := http.Cookie {
+			Name: "_cookie",
+			Value: session.Uuid,
+			HttpOnly: true,
+		}
+		http.SetCookie(writer, &cookie)
+		http.Redirect(writer, request, "/", http.StatusFound)
+	} else {
+		http.Redirect(writer, request, "/login", http.StatusSeeOther)
+	}
+}
+
+// /login
+func login(writer http.ResponseWriter, request *http.Request) {
+	printl("login:", "meth:", request.Method)
+	if request.Method == http.MethodGet {
+		generateHTML(writer, nil, "login.layout", "public.navbar", "login")
+	} else if request.Method == http.MethodPost {
+		authenticate(writer, request)
+	}
+}
+
+// GET /logout
+func logout(writer http.ResponseWriter, request *http.Request) {
+	printl("logout")
+	cookie, err := request.Cookie("_cookie")
+	if err != http.ErrNoCookie {
+		session := data.Session{Uuid: cookie.Value}
+		session.Delete()
+	}
+	http.Redirect(writer, request, "/", http.StatusFound)
+}
+
+// POST /signup
+func signupAccount(writer http.ResponseWriter, request *http.Request) {
+	printl("signupAccount:" )
+	err := request.ParseForm()
+	if err != nil {
+		sendError(writer, request, "PareForm error")
+		warning(err, "ParseForm error")
+		http.Redirect(writer, request, "/login", http.StatusSeeOther)
+		return
+	}
+
+	user := data.User{
+		Name:     request.PostFormValue("name"),
+		Email:    request.PostFormValue("email"),
+		Password: request.PostFormValue("password"),
+		Uuid: data.CreateUUID(),
+	}
+	if err := user.Export(); err != nil {
+		printl("Export:", err)
+		danger(err, "Cannot export user")
+	}
+	http.Redirect(writer, request, "/login", http.StatusSeeOther)
+}
+
+// /signup
+func signup(writer http.ResponseWriter, request *http.Request) {
+	printl("signup,", "meth:", request.Method)
+	if request.Method == http.MethodGet {
+		generateHTML(writer, nil, "login.layout", "public.navbar", "signup")
+	} else if request.Method == http.MethodPost {
+		signupAccount(writer, request)
+	}
+}

@@ -1,0 +1,19 @@
+WARNING2021/03/11 03:02:37 utils.go:30: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot find user
+WARNING2021/03/11 03:02:57 utils.go:30: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot find user
+WARNING2021/03/11 03:05:17 utils.go:30: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot find user
+WARNING2021/03/11 03:06:04 utils.go:30: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot find user
+WARNING2021/03/11 03:07:13 utils.go:30: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot find user
+WARNING2021/03/11 03:07:31 utils.go:30: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot find user
+WARNING2021/03/11 03:09:53 utils.go:30: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot find user
+WARNING2021/03/11 03:10:07 utils.go:30: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot find user
+WARNING2021/03/11 03:10:21 utils.go:30: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot find user
+WARNING2021/03/11 03:15:11 utils.go:30: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot find user
+ERROR2021/03/11 03:16:26 utils.go:35: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot export user
+ERROR2021/03/11 03:19:05 utils.go:35: parse "postgres://nihuo@localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot export user
+ERROR2021/03/11 03:20:18 utils.go:35: parse "postgres://localhost:5432 dbname=chitchat sslmode=disable": invalid port ":5432 dbname=chitchat sslmode=disable" after host Cannot export user
+ERROR2021/03/11 03:26:14 utils.go:35: pq: password authentication failed for user "nihuo" Cannot export user
+ERROR2021/03/11 03:28:00 utils.go:35: pq: password authentication failed for user "nihuo" Cannot export user
+ERROR2021/03/11 03:31:28 utils.go:35: pq: column "created_at" of relation "users" does not exist Cannot export user
+ERROR2021/03/11 03:34:21 utils.go:35: sql: expected 4 destination arguments in Scan, not 5 Cannot create session
+ERROR2021/03/11 03:36:34 utils.go:35: sql: expected 4 destination arguments in Scan, not 5 Cannot create session
+ERROR2021/03/11 03:37:21 utils.go:35: sql: expected 4 destination arguments in Scan, not 5 Cannot create session
