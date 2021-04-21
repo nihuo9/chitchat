@@ -91,6 +91,49 @@ func (user *User) Update() (err error) {
 	return
 }
 
+func (user *User) CreateThread(topic string) (thread *Thread, err error) {
+	statement := `insert into threads (uuid, topic, user_id, num_replies, created_at) values 
+($1, $2, $3, $4, $5) returning id`
+	stmt, err := DB.Prepare(statement)
+	if err != nil {
+		return
+	}
+	defer stmt.Close()
+
+	thread = &Thread{
+		Uuid: CreateUUID(),
+		Topic: topic,
+		UserId: user.Id,
+		NumReplies: 0,
+		CreatedAt: time.Now(),
+	}
+	//_, err = stmt.QueryRow()
+	err = stmt.QueryRow(thread.Uuid, thread.Topic, thread.UserId, thread.NumReplies, 
+		thread.CreatedAt).Scan(&thread.Id)
+	return
+}
+
+func (user *User) CreatePost(thread *Thread, body string) (post *Post, err error) {
+	statement := `insert into posts (uuid, body, user_id, thread_id, created_at) values 
+($1, $2, $3, $4, $5) returning id`
+	stmt, err := DB.Prepare(statement)
+	if err != nil {
+		return
+	}
+	defer stmt.Close()
+
+	post = &Post{
+		Uuid: CreateUUID(),
+		Body: body,
+		UserId: user.Id,
+		ThreadId: thread.Id,
+		CreatedAt: time.Now(),
+	}
+	err = stmt.QueryRow(post.Uuid, post.Body, post.UserId, post.ThreadId,
+		 post.CreatedAt).Scan(&post.Id)
+	return
+}
+
 func (sess *Session) CheckValid() (valid bool) {
 	valid = true
 	if sess.Id == 0 {
@@ -112,6 +155,7 @@ func (sess *Session) Delete() (err error) {
 }
 
 func (sess *Session) User() (user *User, err error) {
+	fmt.Println("userid:", sess.UserId)
 	return UserByID(sess.UserId)
 }
 

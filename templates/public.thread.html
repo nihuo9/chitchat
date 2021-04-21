@@ -1,0 +1,21 @@
+{{ define "content" }}
+<div class="panel panel-default">
+    <div class="panel-headling">
+        <span class="lead">
+            <i class="fa fa-comment-o"></i>{{ .Topic }}
+        </span>
+        <div class="pull-right">
+            由{{ .User.Name }}创建 - {{ .CreatedAt }} - {{ .NumReplies }} 回复.
+        </div>
+    </div>
+
+    {{ range .Posts }}
+    <div class="panel-body">
+        <span class="lead"><i class="fa fa-comment"></i>{{ .Body }}</span>
+        <div class="pull-right">
+            {{ .User.Name }} - {{ .CreatedAt }}
+        </div>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

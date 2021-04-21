@@ -9,7 +9,7 @@
             <span class="lead"><i class="fa fa-comment-o">{{ .Topic }}</i></span>
         </div>
         <div class="panel-body">
-            由{{ .User.Name }}创建 - {{ .CreatedAtDate }} - {{ .NumReplies }} 回复.
+            由{{ .User.Name }}创建 - {{ .CreatedAt }} - {{ .NumReplies }} 回复.
             <div class="pull-right">
                 <a href="/thread/read?id={{.Uuid}}">查看详情</a>
             </div>

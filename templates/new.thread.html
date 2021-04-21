@@ -1,0 +1,13 @@
+{{ define "content" }}
+<form>
+    <div class="lead">
+        输入你的话题开启一个新帖子
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" name="topic" id="topic" placeholder="请输入..." rows="4"></textarea>
+        <br/>
+        <br/>
+        <input type="submit" class="btn btn-lg btn-primary pull-right" value="开启帖子" formaction="/thread/new" formmethod="POST">
+    </div>
+</form>
+{{ end }}

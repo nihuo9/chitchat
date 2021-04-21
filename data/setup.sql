@@ -25,6 +25,7 @@ create table threads (
   uuid       varchar(64) not null unique,
   topic      text,
   user_id    integer references users(id),
+  num_replies integer,
   created_at timestamp not null       
 );
 

@@ -9,17 +9,14 @@ import (
 
 // GET /
 func index(writer http.ResponseWriter, request *http.Request) {
-	threads, err := data.GetThreads(0)
+	threads, err := data.GetAllThreads(0)
 	if err != nil {
 		sendError(writer, request, "获取话题失败，请稍后再试")
 	} else {
 		_, err := session(writer, request)
 		if err != nil {
-			printl("未登录:", err)
 			generateHTML(writer, threads, "layout", "public.navbar", "index")
-			//sendFile(writer, "templates/test.html")
 		} else {
-			printl(("登录"))
 			generateHTML(writer, threads, "layout", "private.navbar", "index")
 		}
 	}

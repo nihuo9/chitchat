@@ -27,6 +27,14 @@ func main() {
 	// 注册
 	mux.HandleFunc("/signup", signup)
 
+	// thread
+	// 创建一个话题
+	mux.HandleFunc("/thread/new", routeNewThread)
+	// 读取一个帖子的详情
+	mux.HandleFunc("/thread/read", readThread)
+	// 回复一个帖子
+	mux.HandleFunc("/thread/post", postThread)
+
 	// 开启服务
 	server := &http.Server {
 		Addr: config.Address,

@@ -15,22 +15,38 @@ import (
 )
 
 const version = "0.1"
+const _DEBUG = true
 
 func printl(args ...interface{}) {
 	fmt.Println(args...)
 }
 
 func info(args ...interface{}) {
+	if _DEBUG {
+		fmt.Print("INFO:")
+		printl(args...)
+		return
+	}
 	logger.SetPrefix("INFO")
 	logger.Println(args...)
 }
 
 func warning(args ...interface{}) {
+	if _DEBUG {
+		fmt.Print("WARNING:")
+		printl(args...)
+		return
+	}
 	logger.SetPrefix("WARNING")
 	logger.Println(args...)
 }
 
 func danger(args ...interface{}) {
+	if _DEBUG {
+		fmt.Print("ERROR:")
+		printl(args...)
+		return
+	}
 	logger.SetPrefix("ERROR")
 	logger.Println(args...)
 }
@@ -63,11 +79,9 @@ func sendFile(writer http.ResponseWriter, filename string) {
 	}
 }
 
-func session(writer http.ResponseWriter, request *http.Request) (sess data.Session, err error) {
+func session(writer http.ResponseWriter, request *http.Request) (sess *data.Session, err error) {
 	cookie, err := request.Cookie("_cookie")
-	printl("cookie:", cookie.Value)
 	if err == nil {
-		var sess *data.Session
 		sess, err = data.SessionByUUID(cookie.Value)
 		if err == nil {
 			if ok := sess.CheckValid(); !ok {

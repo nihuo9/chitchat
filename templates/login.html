@@ -1,15 +1,23 @@
 {{ define "content" }}
-<form>
+<div class="sign">
+    <div class="logo">
     <h2>
-        <i class="fa fa-comments-o">
-            ChitChat
-        </i>
+        <a href="/">
+            <i class="fa fa-comments-o">
+              ChitChat
+            </i>
+        </a>
     </h2>
-    <input type="email" name="email" placeholder="邮箱地址 xxx@xxx" required autofocus>
-    <input type="password" name="password" placeholder="密码" required>
-    <br/>
-    <input type="submit" value="登录" formaction="/login" formmethod="POST">
-    <br/>
-    <a href="/signup">注册</a>
-</form>
+    </div>
+    <div class="sign-container">
+        <form>
+            <input type="email" class="form-control" name="email" placeholder="邮箱地址 xxx@xxx" required autofocus>
+            <input type="password" class="form-control" name="password" placeholder="密码" required>
+            <br/>
+            <input type="submit" class="btn btn-lg btn-primary btn-block" value="登录" formaction="/login" formmethod="POST">
+            <br/>
+            <a class="lead pull-right" href="/signup">注册</a>
+        </form>
+    </div>
+</div>
 {{ end }}
